@@ -11,6 +11,7 @@ export class RestartComponent implements OnInit {
 
   @Input() boardContent?: number[][];
   @Output() resetValue = new EventEmitter<number[][]>();
+
   constructor() { }
   newBoard?:number[][];
 
@@ -20,7 +21,16 @@ export class RestartComponent implements OnInit {
 
   reset(): void {
     console.log('Restart Click');
-    this.resetValue.emit(this.boardContent) ; 
+
+    this.boardContent = [
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+    ];
+
+    this.resetValue.emit(this.boardContent) ;
+    // console.log(this.newBoard)
   }
 
 }

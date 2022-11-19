@@ -16,4 +16,7 @@
         <div class="winner draw" *ngIf="count>=16 && !currentWinerIx">The match is Draw</div>
     </div>
     <button class="reset-btn" (click)="reset()">Restart</button>
-</div>
+
+    <app-restart [boardContent]="boardContent" (resetValue)="boardContent=$event"></app-restart>
+
+  </div>

@@ -7,7 +7,7 @@ import { Component} from '@angular/core';
 })
 export class Level4Component {
 
-  
+
   public status: boolean;
   public currentPlayerIx!: number ;
   public currentWinerIx !: number;
@@ -18,8 +18,9 @@ export class Level4Component {
   constructor() {
     this.status = false;
     this.playerNames = ['', 'x', 'o'];
-    
+
     this.reset();
+
   }
 
   getResultData(): boolean {
@@ -67,7 +68,7 @@ export class Level4Component {
         return true;
       }
     }
-    return (this.testData(0,0,1,1,2,2,3,3) || this.testData(0,3,1,2,2,1,3,0)) ; 
+    return (this.testData(0,0,1,1,2,2,3,3) || this.testData(0,3,1,2,2,1,3,0)) ;
   }
 
   private testData(a: number, b: number, p: number, q: number, x: number, y: number, m:number , n: number): boolean {
@@ -82,27 +83,27 @@ export class Level4Component {
   //--------- Result Logic Ends ---------
 
   private getCount():number{
-    let myCount = 0 ; 
+    let myCount = 0 ;
     for(let x=0 ; x < this.boardContent.length ; x++) {
       for(let y=0 ; y < this.boardContent[x].length ; y++){
-        if(this.boardContent[x][y]!==0) myCount++ ; 
+        if(this.boardContent[x][y]!==0) myCount++ ;
       }
     }
-    return myCount; 
+    return myCount;
   }
 
   public Myset(row: number, col: number): void {
-    
+
     console.log("--------", this.count, "----------");
 
     if (this.currentWinerIx === 0 && this.boardContent[row][col] === 0) {
       this.boardContent[row][col] = this.currentPlayerIx;
       this.count = this.getCount();
       if(this.Check()){
-        this.currentWinerIx = this.currentPlayerIx ; 
-        return ; 
+        this.currentWinerIx = this.currentPlayerIx ;
+        return ;
       }
-      this.currentPlayerIx = this.currentPlayerIx === 1 ? 2 : 1 ; 
+      this.currentPlayerIx = this.currentPlayerIx === 1 ? 2 : 1 ;
     }
 
   }
