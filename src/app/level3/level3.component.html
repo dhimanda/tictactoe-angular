@@ -1,0 +1,23 @@
+<div class="gameTable">
+    <div class="turn-area">
+        <h4 [hidden]="count>=9 || currentWinerIx">Player {{playerNames[currentPlayerIx]}} Turn</h4>
+    </div>
+    <table>
+        <tbody>
+            <tr *ngFor="let r of boardContent ;let i = index">
+               <td *ngFor="let c of boardContent[i] ; let j = index" (click)="Myset(i,j)" [class]="getStyle(i,j)">{{getPlayerName(i,j)}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="WinnerArea">
+        <div class="winner" *ngIf="Check()">The Winer is {{getResult()}}</div>
+        <div class="draw" *ngIf="count>=9 && !currentWinerIx">The match is Draw</div>
+    </div>
+    
+    <button class="reset-btn" (click)="reset()">Restart</button>
+</div>
+
+
+
+
+

@@ -1,0 +1,22 @@
+h1{
+    text-align: center;
+}
+
+ul{
+    background-color: green;
+    display: block;
+    border: 1px solid black;
+    height: 20px;
+}
+
+ul li{
+    float: left;
+    list-style-type:none;
+}
+ul li:not(:first-child){
+    margin-left: 20px;
+}
+ ul li a{
+    font-weight: bold;
+    color: white;
+ }

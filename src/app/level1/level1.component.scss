@@ -1,0 +1,79 @@
+table {
+   margin: 0 auto;
+   border: 1px solid rgb(107, 20, 247);
+}
+
+.gameTable {
+   height: auto;
+   display: block;
+   margin: 0 auto;
+}
+
+td {
+   --side: 75px;
+   height: var(--side);
+   width: var(--side);
+   color: white;
+   font-size: 50px;
+   text-align: center;
+   vertical-align: baseline;
+   color: white;
+   font-size: 50px;
+   text-align: center;
+   vertical-align: baseline;
+   border: 1px solid rgb(107, 20, 247);
+}
+
+.contains- {
+   background-color: grayscale($color: #bbafaf);
+}
+
+.contains-x {
+   background-color: red;
+}
+
+.contains-o {
+   background-color: green;
+}
+
+.WinnerArea {
+   color: red;
+   font-weight: bold;
+   font-size: 30px;
+   display: flex;
+}
+
+.winner {
+   color: white;
+   text-align: center;
+   display: block;
+   width: 100%;
+   margin-top: 20px;
+   height: 100%;
+   padding: 10px;
+}
+
+.winner-o {
+   background-color: green;
+}
+
+.winner-x {
+   background-color: red;
+}
+
+.reset-btn {
+   margin: 0 auto;
+   padding: 5px;
+   background-color: aqua;
+   width: 100px;
+   border: 2px solid rgb(151, 223, 57);
+   font-weight: bold;
+   color: teal;
+   font-size: 20px;
+   display: block;
+   margin-top: 20px;
+}
+
+.draw{
+   background-color: rgb(107, 20, 247);
+}
