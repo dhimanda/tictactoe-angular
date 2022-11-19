@@ -1,8 +1,12 @@
+// Angular Import
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
+import {MatDialogModule} from '@angular/material/dialog';
 import { AppComponent } from './app.component';
+
+
+// My import
 import { Level1Component } from './level1/level1.component';
 import { Level2Component } from './level2/level2.component';
 import { Level3Component } from './level3/level3.component';
@@ -24,7 +28,8 @@ import { RestartComponent } from './restart/restart.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
