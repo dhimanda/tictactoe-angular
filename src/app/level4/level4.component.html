@@ -15,9 +15,9 @@
         <div class="winner winner-x" *ngIf="Check() && getResult()==='x'">The Winer is {{getResult()}}</div>
         <div class="winner draw" *ngIf="count>=16 && !currentWinerIx">The match is Draw</div>
     </div>
-    <button (click)="openDialog()">Dialog Open</button>
-    <button (click)="laddu()">Laddu</button>
-    <button class="reset-btn" (click)="reset()">Restart</button>
+    <!-- <button (click)="openDialog()">Dialog Open</button>
+    <button mat-raised-button (click)="laddu()">Laddu</button> -->
+    <button mat-raised-button class="" (click)="reset()">Restart</button>
 
     <!-- <app-restart [boardContent]="boardContent" (resetValue)="boardContent=$event"></app-restart> // different component -->
 
