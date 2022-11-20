@@ -1,6 +1,7 @@
+<h3>Try to connect {{boardContent.length}}</h3>
 <div class="gameTable">
     <div class="turn-area">
-        <h4 [hidden]="count>=9 || currentWinerIx">Player {{playerNames[currentPlayerIx]}} Turn</h4>
+        <h4 [ngClass]="getPlayerColor()" *ngIf="count<(boardContent.length*boardContent.length)-1 && !currentWinerIx">Player {{playerNames[currentPlayerIx]}} Turn</h4>
     </div>
     <table>
         <tbody>
@@ -10,14 +11,10 @@
         </tbody>
     </table>
     <div class="WinnerArea">
-        <div class="winner" *ngIf="Check()">The Winer is {{getResult()}}</div>
-        <div class="draw" *ngIf="count>=9 && !currentWinerIx">The match is Draw</div>
+        <div class="winner winner-o" *ngIf="Check() && getResult()==='o'">The Winer is {{getResult()}}</div>
+        <div class="winner winner-x" *ngIf="Check() && getResult()==='x'">The Winer is {{getResult()}}</div>
+        <div class="winner draw" *ngIf="(count+1)>=(boardContent.length*boardContent.length) && !currentWinerIx">The match is Draw</div>
     </div>
-    
+
     <button class="reset-btn" (click)="reset()">Restart</button>
-</div>
-
-
-
-
-
+  </div>

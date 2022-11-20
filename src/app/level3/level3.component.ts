@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./level3.component.scss']
 })
 export class Level3Component {
+  public gameCount = 0 ; 
   public status: boolean;
   public currentPlayerIx!: number ;
   public currentWinerIx !: number;
@@ -99,6 +100,7 @@ export class Level3Component {
 
   }
   public reset(): void {
+    this.currentPlayerIx = this.gameCount%2 ? 1 : 2;
     this.currentPlayerIx = 1;
     this.currentWinerIx = 0;
     this.count = 0;
@@ -107,6 +109,14 @@ export class Level3Component {
       [0, 0, 0],
       [0, 0, 0],
     ];
+    this.gameCount++ ; 
+  }
+
+  // ---------- function for styling ------------
+  public getPlayerColor():string{
+    if(this.currentPlayerIx===1) return 'player-turn winner-x';
+    if(this.currentPlayerIx===2) return 'player-turn winner-o';
+    return "" ; 
   }
 
 }

@@ -9,7 +9,7 @@ import { FormComponent } from '../form/form.component';
 })
 export class Level4Component implements OnInit{
 
-
+  public gameCount = 0 ; 
   public status: boolean;
   public currentPlayerIx!: number ;
   public currentWinerIx !: number;
@@ -124,7 +124,7 @@ export class Level4Component implements OnInit{
 
   }
   public reset(): void {
-    this.currentPlayerIx = 2;
+    this.currentPlayerIx = this.gameCount%2 ? 1 : 2;
     this.currentWinerIx = 0;
     this.count = 0;
     this.boardContent = [
@@ -133,5 +133,15 @@ export class Level4Component implements OnInit{
       [0, 0, 0, 0],
       [0, 0, 0, 0],
     ];
+    this.gameCount++ ; 
   }
+
+
+  // ---------- function for styling ------------
+  public getPlayerColor():string{
+    if(this.currentPlayerIx===1) return 'player-turn winner-x';
+    if(this.currentPlayerIx===2) return 'player-turn winner-o';
+    return "" ; 
+  }
+
 }

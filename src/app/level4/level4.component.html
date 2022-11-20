@@ -1,7 +1,7 @@
-<h3>Try to connect 4</h3>
+<h3>Try to connect {{boardContent.length}}</h3>
 <div class="gameTable">
     <div class="turn-area">
-        <h4 [hidden]="count>=16 || currentWinerIx">Player {{playerNames[currentPlayerIx]}} Turn</h4>
+        <h4 [ngClass]="getPlayerColor()" *ngIf="count<(boardContent.length*boardContent.length)-1 && !currentWinerIx">Player {{playerNames[currentPlayerIx]}} Turn</h4>
     </div>
     <table>
         <tbody>
@@ -13,12 +13,8 @@
     <div class="WinnerArea">
         <div class="winner winner-o" *ngIf="Check() && getResult()==='o'">The Winer is {{getResult()}}</div>
         <div class="winner winner-x" *ngIf="Check() && getResult()==='x'">The Winer is {{getResult()}}</div>
-        <div class="winner draw" *ngIf="count>=16 && !currentWinerIx">The match is Draw</div>
+        <div class="winner draw" *ngIf="(count+1)>=(boardContent.length*boardContent.length) && !currentWinerIx">The match is Draw</div>
     </div>
-    <!-- <button (click)="openDialog()">Dialog Open</button>
-    <button mat-raised-button (click)="laddu()">Laddu</button> -->
-    <button mat-raised-button class="" (click)="reset()">Restart</button>
 
-    <!-- <app-restart [boardContent]="boardContent" (resetValue)="boardContent=$event"></app-restart> // different component -->
-
+    <button class="reset-btn" (click)="reset()">Restart</button>
   </div>
