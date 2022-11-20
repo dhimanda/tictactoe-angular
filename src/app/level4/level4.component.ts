@@ -1,11 +1,13 @@
-import { Component} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { FormComponent } from '../form/form.component';
 
 @Component({
   selector: 'app-level4',
   templateUrl: './level4.component.html',
   styleUrls: ['./level4.component.scss']
 })
-export class Level4Component {
+export class Level4Component implements OnInit{
 
 
   public status: boolean;
@@ -15,16 +17,30 @@ export class Level4Component {
   public playerNames !: string[];
   public count: number = 0;
 
-  constructor() {
+  constructor(private dialog: MatDialog) {
     this.status = false;
     this.playerNames = ['', 'x', 'o'];
 
     this.reset();
 
   }
+  ngOnInit(): void {
+    // Runs after constructor
+    //this.dialog.open(FormComponent);
+  }
+
 
   getResultData(): boolean {
     return this.status;
+  }
+
+  openDialog(){
+    console.log('Laddu Baba');
+    this.dialog.open(FormComponent);
+  }
+
+  laddu(){
+    console.log('hi laddu') ; 
   }
 
   RunLoop(num: number) {

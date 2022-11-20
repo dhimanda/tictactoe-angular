@@ -1,9 +1,8 @@
 // Angular Import
-
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {MatDialogModule} from '@angular/material/dialog';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 // My import
@@ -14,9 +13,11 @@ import { Level4Component } from './level4/level4.component';
 import { Level5Component } from './level5/level5.component';
 import { FormComponent } from './form/form.component';
 import { RestartComponent } from './restart/restart.component';
+import { AppRoutingModule } from './app-routing.module';
+import { MAT_MODULES } from './mat-modules';
 
 @NgModule({
-  declarations: [
+  declarations: [ // Ami Za Create korbo
     AppComponent,
     Level1Component,
     Level2Component,
@@ -26,10 +27,11 @@ import { RestartComponent } from './restart/restart.component';
     FormComponent,
     RestartComponent
   ],
-  imports: [
+  imports: [ // external items :: Modules
     BrowserModule,
     AppRoutingModule,
-    MatDialogModule,
+    BrowserAnimationsModule,
+    MAT_MODULES, // all mat module
   ],
   providers: [],
   bootstrap: [AppComponent]
