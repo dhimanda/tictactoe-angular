@@ -1,0 +1,24 @@
+<h3>Try to connect 4</h3>
+<div class="gameTable">
+    <div class="turn-area">
+        <h4 [hidden]="count>=16 || currentWinerIx">Player {{playerNames[currentPlayerIx]}} Turn</h4>
+    </div>
+    <table>
+        <tbody>
+            <tr *ngFor="let r of boardContent ;let i = index">
+               <td *ngFor="let c of boardContent[i] ; let j = index" (click)="Myset(i,j)" [class]="getStyle(i,j)">{{getPlayerName(i,j)}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="WinnerArea">
+        <div class="winner winner-o" *ngIf="Check() && getResult()==='o'">The Winer is {{getResult()}}</div>
+        <div class="winner winner-x" *ngIf="Check() && getResult()==='x'">The Winer is {{getResult()}}</div>
+        <div class="winner draw" *ngIf="count>=16 && !currentWinerIx">The match is Draw</div>
+    </div>
+    <!-- <button (click)="openDialog()">Dialog Open</button>
+    <button mat-raised-button (click)="laddu()">Laddu</button> -->
+    <button class="reset-btn" (click)="reset()">Restart</button>
+
+    <!-- <app-restart [boardContent]="boardContent" (resetValue)="boardContent=$event"></app-restart> // different component -->
+
+  </div>
