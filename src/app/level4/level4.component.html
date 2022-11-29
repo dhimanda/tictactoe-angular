@@ -1,21 +1,28 @@
-<h3>Try to connect {{boardContent.length}}</h3>
+<h3>Try to connect {{board.boardContent.length}}</h3>
 <div class="gameTable">
     <div class="turn-area">
-        <h4 [ngClass]="getPlayerColor()" *ngIf="count<(boardContent.length*boardContent.length)-1 && !currentWinerIx">Player {{playerNames[currentPlayerIx]}} Turn</h4>
+        <h4 [class]="getPlayerColor()"
+            *ngIf="board.count<(board.boardContent.length*board.boardContent.length) && !board.currentWinerIx">Player
+            {{playerNames[board.currentPlayerIx] | uppercase}} Turn</h4>
     </div>
     <table>
         <tbody>
-            <tr *ngFor="let r of boardContent ;let i = index">
-               <td *ngFor="let c of boardContent[i] ; let j = index" (click)="Myset(i,j)" [class]="getStyle(i,j)">{{getPlayerName(i,j)}}</td>
+            <tr *ngFor="let r of board.boardContent ;let i = index">
+                <td *ngFor="let c of board.boardContent[i] ; let j = index" (click)="board.Myset(i,j)"
+                    [class]="getStyle(i,j)">{{getPlayerName(i,j)}}</td>
             </tr>
         </tbody>
     </table>
     <div class="WinnerArea">
-        <div class="winner winner-o" *ngIf="Check() && getResult()==='o'">The Winer is {{getResult()}}</div>
-        <div class="winner winner-x" *ngIf="Check() && getResult()==='x'">The Winer is {{getResult()}}</div>
-        <div class="winner draw" *ngIf="(count+1)>=(boardContent.length*boardContent.length) && !currentWinerIx">The match is Draw</div>
+        <div class="winner winner-o" *ngIf="board.Check() && getResult()==='o'">The Winer is {{getResult() | uppercase}}
+        </div>
+        <div class="winner winner-x" *ngIf="board.Check() && getResult()==='x'">The Winer is {{getResult() | uppercase}}
+        </div>
+        <div class="winner draw"
+            *ngIf="(board.count>=board.boardContent.length*board.boardContent.length) && !board.currentWinerIx">The
+            match is Draw</div>
     </div>
 
-    <button class="reset-btn" (click)="reset()">Restart</button> 
+    <button class="reset-btn" (click)="board.reset()">Restart</button>
     <!-- Demo Comment -->
-  </div>
+</div>

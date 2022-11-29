@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
+
 // My import
 import { Level1Component } from './level1/level1.component';
 import { Level2Component } from './level2/level2.component';
@@ -15,6 +16,8 @@ import { FormComponent } from './form/form.component';
 import { RestartComponent } from './restart/restart.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MAT_MODULES } from './mat-modules';
+import { CustomComponent } from './custom/custom.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [ // Ami Za Create korbo
@@ -25,12 +28,15 @@ import { MAT_MODULES } from './mat-modules';
     Level4Component,
     Level5Component,
     FormComponent,
-    RestartComponent
+    RestartComponent,
+    CustomComponent
   ],
   imports: [ // external items :: Modules
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
+    FormsModule,
     MAT_MODULES, // all mat module
   ],
   providers: [],

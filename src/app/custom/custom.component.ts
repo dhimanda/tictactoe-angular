@@ -1,27 +1,36 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { FormComponent } from '../form/form.component';
 import { GridService } from '../grid.service';
-
+import { FormControl, FormGroup, NgModel } from '@angular/forms';
 
 @Component({
-  selector: 'app-level5',
-  templateUrl: './level5.component.html',
-  styleUrls: ['./level5.component.scss']
+  selector: 'app-custom',
+  templateUrl: './custom.component.html',
+  styleUrls: ['./custom.component.scss']
 })
-export class Level5Component implements OnInit{
+export class CustomComponent implements OnInit {
 
-  
   public playerNames !: string[];
   public countValue : number = 0 ; 
+
+  public gameDetails!:FormGroup; 
   
 
   constructor(public dialog: MatDialog , public board:GridService) {
     this.playerNames = ['', 'x', 'o'];
     this.board.reset(5,5,4);
+    this.gameDetails = new FormGroup(
+      {
+        gameRow : new FormControl(5) ,
+        gameCol : new FormControl(5) ,
+        gameConnects : new FormControl(4) ,
+  
+      }
+    )
   }
   ngOnInit(): void {
-    
+    console.log(this.gameDetails.value) ; 
   }
     
 
@@ -69,6 +78,28 @@ export class Level5Component implements OnInit{
     return this.playerNames[this.board.currentWinerIx];
   }
 
+  gameData : any = {gameConnects:4}; 
+
+  public disp():void{
+
+    console.log('From Disp=',this.gameDetails.value) ; 
+    this.gameData = this.gameDetails.value ; 
+    this.board.reset(this.gameDetails.value.gameRow , this.gameDetails.value.gameCol,this.gameDetails.value.gameConnects) ; 
+  }
+
+  public IsConfigure():boolean{
+    console.log('Trig' , this.gameDetails.value.gameConnects) ;
+    if(this.gameDetails.value.gameConnects < 3){
+      return true;
+    }
+    let minData = this.gameDetails.value.gameRow ; 
+    if(minData < this.gameDetails.value.gameCol) {
+      minData = this.gameDetails.value.gameCol ; 
+    }
+    if(minData <= this.gameDetails.value.gameConnects) return true; 
+    else return false; 
+  }
+
   // 00 01 02 03
   // 10 11 12 13
   // 20 21 22 23
@@ -89,4 +120,5 @@ export class Level5Component implements OnInit{
     if(this.board.currentPlayerIx===2) return 'player-turn winner-o';
     return "" ; 
   }
+
 }

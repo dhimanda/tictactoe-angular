@@ -1,0 +1,19 @@
+@import '../level1/level1.component.scss';
+
+.tmp {
+    overflow: hidden;
+}
+.tmp td{
+    position: relative;
+}
+
+.tmp td:hover::after{
+    content: "";
+    position: absolute;
+    background-color: rgb(177, 177, 68);
+    left: 0;
+    top: -5000px;
+    height: 10000px;
+    width: 100%;
+    z-index: -1;
+}
