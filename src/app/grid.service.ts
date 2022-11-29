@@ -24,12 +24,15 @@ export class GridService {
     console.log("--------", this.count, "----------");
 
     if (this.currentWinerIx === 0 && this.boardContent[row][col] === 0) {
+      
       this.boardContent[row][col] = this.currentPlayerIx;
       this.count = this.getCount();
       if (this.Check(row, col)) {
         this.currentWinerIx = this.currentPlayerIx;
+        this.playAudio();
         return;
       }
+      this.playAudio();
       this.currentPlayerIx = this.currentPlayerIx === 1 ? 2 : 1;
     }
 
@@ -42,47 +45,47 @@ export class GridService {
     let n = v.length;
     let m = v[0].length;
     let k = this.connectDots;
-    if(x==0) return false;
- 
-    let cnt1=0,cnt2=0,cnt3=0,cnt4=0;
-    for(let i=q; i>=0; i--){
-        if(v[p][i]==x) cnt1++;
-        else break;
+    if (x == 0) return false;
+
+    let cnt1 = 0, cnt2 = 0, cnt3 = 0, cnt4 = 0;
+    for (let i = q; i >= 0; i--) {
+      if (v[p][i] == x) cnt1++;
+      else break;
     }
-    for(let i=q+1; i<m; i++){
-        if(v[p][i]==x) cnt1++;
-        else break;
+    for (let i = q + 1; i < m; i++) {
+      if (v[p][i] == x) cnt1++;
+      else break;
     }
- 
-    for(let i=p; i>=0; i--){
-        if(v[i][q]==x) cnt2++;
-        else break;
+
+    for (let i = p; i >= 0; i--) {
+      if (v[i][q] == x) cnt2++;
+      else break;
     }
-    for(let i=p+1; i<n; i++){
-        if(v[i][q]==x) cnt2++;
-        else break;
+    for (let i = p + 1; i < n; i++) {
+      if (v[i][q] == x) cnt2++;
+      else break;
     }
- 
-    for(let i=p,j=q; i>=0 && j>=0; i--,j--){
-        if(v[i][j]==x) cnt3++;
-        else break;
+
+    for (let i = p, j = q; i >= 0 && j >= 0; i--, j--) {
+      if (v[i][j] == x) cnt3++;
+      else break;
     }
-    for(let i=p+1,j=q+1; i<n && j<m; i++,j++){
-        if(v[i][j]==x) cnt3++;
-        else break;
+    for (let i = p + 1, j = q + 1; i < n && j < m; i++, j++) {
+      if (v[i][j] == x) cnt3++;
+      else break;
     }
- 
-    for(let i=p,j=q; i>=0 && j<m; i--,j++){
-        if(v[i][j]==x) cnt4++;
-        else break;
+
+    for (let i = p, j = q; i >= 0 && j < m; i--, j++) {
+      if (v[i][j] == x) cnt4++;
+      else break;
     }
-    for(let i=p+1,j=q-1; i<n && j>=0;i++,j--){
-        if(v[i][j]==x) cnt4++;
-        else break;
+    for (let i = p + 1, j = q - 1; i < n && j >= 0; i++, j--) {
+      if (v[i][j] == x) cnt4++;
+      else break;
     }
-    
-    if(cnt1>=k || cnt2>=k || cnt3>=k || cnt4>=k){
-        return true;
+
+    if (cnt1 >= k || cnt2 >= k || cnt3 >= k || cnt4 >= k) {
+      return true;
     }
     return false;
 
@@ -118,5 +121,26 @@ export class GridService {
       }
     }
     return myCount;
+  }
+
+  public playAudio(): void {
+    if (this.currentWinerIx > 0) {
+      this.playSound('winner.mp3');
+    }
+    else{
+      if (this.currentPlayerIx === 1) {
+        this.playSound('tac.wav'); 
+      }
+      else {
+        this.playSound('tic.mp3') ; 
+      }
+    }
+  }
+
+  private playSound(soundName: string): void {
+    let audio = new Audio();
+    audio.src = "../../../assets/audio/" + soundName;
+    audio.load();
+    audio.play();
   }
 }

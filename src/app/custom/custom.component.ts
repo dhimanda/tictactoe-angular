@@ -89,14 +89,14 @@ export class CustomComponent implements OnInit {
 
   public IsConfigure():boolean{
     console.log('Trig' , this.gameDetails.value.gameConnects) ;
-    if(this.gameDetails.value.gameConnects < 3){
+    if(this.gameDetails.value.gameConnects < 2){
       return true;
     }
     let minData = this.gameDetails.value.gameRow ; 
     if(minData < this.gameDetails.value.gameCol) {
       minData = this.gameDetails.value.gameCol ; 
     }
-    if(minData <= this.gameDetails.value.gameConnects) return true; 
+    if(minData < this.gameDetails.value.gameConnects) return true; 
     else return false; 
   }
 
@@ -119,6 +119,15 @@ export class CustomComponent implements OnInit {
     if(this.board.currentPlayerIx===1) return 'player-turn winner-x';
     if(this.board.currentPlayerIx===2) return 'player-turn winner-o';
     return "" ; 
+  }
+
+  // ---------- Audio ------------------
+
+  public playAudio():void{
+    let audio = new Audio();
+    audio.src = "../../../assets/audio/tick.mp3";
+    audio.load();
+    audio.play();
   }
 
 }
