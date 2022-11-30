@@ -10,7 +10,6 @@
 table {
    margin: 0 auto;
    border: 1px solid rgb(107, 20, 247);
-   width: 900px;
    height: auto;
 }
 
@@ -69,6 +68,10 @@ td {
 
 .winner-x {
    background-color: red;
+}
+
+.turn-area{
+   width: 100%;
 }
 
 .reset-btn {

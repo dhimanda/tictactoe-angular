@@ -10,6 +10,11 @@ import { FormControl, FormGroup, NgModel } from '@angular/forms';
   styleUrls: ['./custom.component.scss']
 })
 export class CustomComponent implements OnInit {
+  screenWidth = window.innerWidth;  
+  screenHeight = window.innerHeight; 
+
+  maxNeed = this.screenWidth ; 
+
 
   public playerNames !: string[];
   public countValue : number = 0 ; 
@@ -17,6 +22,7 @@ export class CustomComponent implements OnInit {
   public gameDetails!:FormGroup; 
   public col!:number ; 
   public row!:number ; 
+  public tdStyle!:string ; 
   
 
   constructor(public dialog: MatDialog , public board:GridService) {
@@ -32,7 +38,11 @@ export class CustomComponent implements OnInit {
     )
   }
   ngOnInit(): void {
-    console.log(this.gameDetails.value) ; 
+    if(this.maxNeed > this.screenHeight){
+      this.maxNeed = this.screenHeight ; 
+    }
+    console.log(this.maxNeed, 'ballll' ) ; 
+    this.tdStyle = this.getTdStyle() ;
   }
     
 
@@ -87,6 +97,7 @@ export class CustomComponent implements OnInit {
     console.log('From Disp=',this.gameDetails.value) ; 
     this.gameData = this.gameDetails.value ; 
     this.board.reset(this.gameDetails.value.gameRow , this.gameDetails.value.gameCol,this.gameDetails.value.gameConnects) ; 
+    this.tdStyle = this.getTdStyle() ;
   }
 
   public IsConfigure():boolean{
@@ -110,12 +121,15 @@ export class CustomComponent implements OnInit {
 
   
 
- public getTdStyle():string{
-  let row = 900/this.gameDetails.value.gameRow;
-  let col = 900/this.gameDetails.value.gameCol ; 
-  let font = this.gameDetails.value.gameConnects ; 
-
-  return "height: "+col+"; width:"+col+"; font-size: 35px;";
+  getTdStyle():string{
+  let row = this.maxNeed/this.gameDetails.value.gameRow;
+  let col = (this.maxNeed*.8)/this.gameDetails.value.gameCol ; 
+  let font = col * 0.66 ; 
+  let data:string; 
+  
+  data = "height: "+col+"px; width:"+col+"px; font-size: "+font+"px;"
+  console.log(data) ; 
+  return  data;
  }
 
   //--------- Result Logic Ends ---------
