@@ -15,7 +15,7 @@ export class GridService {
   //------------ Audio Load -----------
   public winnerSound = this.getSound('winner.mp3') ; 
   public xSound = this.getSound('tic.mp3') ; 
-  public oSound = this.getSound('tac.wav') ; 
+  public oSound = this.getSound('tac.mp3') ; 
 
   constructor() {
     this.status = false;
