@@ -15,6 +15,8 @@ export class CustomComponent implements OnInit {
   public countValue : number = 0 ; 
 
   public gameDetails!:FormGroup; 
+  public col!:number ; 
+  public row!:number ; 
   
 
   constructor(public dialog: MatDialog , public board:GridService) {
@@ -108,7 +110,13 @@ export class CustomComponent implements OnInit {
 
   
 
- 
+ public getTdStyle():string{
+  let row = 900/this.gameDetails.value.gameRow;
+  let col = 900/this.gameDetails.value.gameCol ; 
+  let font = this.gameDetails.value.gameConnects ; 
+
+  return "height: "+col+"; width:"+col+"; font-size: 35px;";
+ }
 
   //--------- Result Logic Ends ---------
 

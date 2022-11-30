@@ -10,6 +10,8 @@
 table {
    margin: 0 auto;
    border: 1px solid rgb(107, 20, 247);
+   width: 900px;
+   height: auto;
 }
 
 .gameTable {
@@ -18,17 +20,17 @@ table {
    margin: 0 auto;
 }
 
+tbody{
+   
+}
+
+tr{
+   
+}
+
 td {
-   --side: 75px;
-   height: var(--side);
-   width: var(--side);
-   font-size: 50px;
-   text-align: center;
-   vertical-align: baseline;
    color: white;
-   font-size: 50px;
    text-align: center;
-   vertical-align: baseline;
    border: 1px solid rgb(107, 20, 247);
 }
 

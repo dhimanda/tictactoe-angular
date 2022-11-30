@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 // My import
@@ -18,6 +18,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { MAT_MODULES } from './mat-modules';
 import { CustomComponent } from './custom/custom.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [ // Ami Za Create korbo
@@ -38,6 +39,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     FormsModule,
     MAT_MODULES, // all mat module
+    FlexLayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

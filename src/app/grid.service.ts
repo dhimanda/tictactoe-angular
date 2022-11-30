@@ -12,9 +12,15 @@ export class GridService {
   public count: number = 0;
   public connectDots!: number;
 
+  //------------ Audio Load -----------
+  public winnerSound = this.getSound('winner.mp3') ; 
+  public xSound = this.getSound('tic.mp3') ; 
+  public oSound = this.getSound('tac.wav') ; 
+
   constructor() {
     this.status = false;
     //this.reset(5);
+
   }
   getResultData(): boolean {
     return this.status;
@@ -125,14 +131,14 @@ export class GridService {
 
   public playAudio(): void {
     if (this.currentWinerIx > 0) {
-      this.playSound('winner.mp3');
+      this.winnerSound.play() ; 
     }
     else{
       if (this.currentPlayerIx === 1) {
-        this.playSound('tac.wav'); 
+        this.xSound.play() ; 
       }
       else {
-        this.playSound('tic.mp3') ; 
+        this.oSound.play() ; 
       }
     }
   }
@@ -142,5 +148,12 @@ export class GridService {
     audio.src = "../../../assets/audio/" + soundName;
     audio.load();
     audio.play();
+  }
+
+  private getSound(soundName:string):HTMLAudioElement{
+    let audio = new Audio();
+    audio.src = "../../../assets/audio/" + soundName;
+    audio.load();
+    return audio;
   }
 }
