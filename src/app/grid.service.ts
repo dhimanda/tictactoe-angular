@@ -12,10 +12,12 @@ export class GridService {
   public count: number = 0;
   public connectDots!: number;
 
+  public dropMode:boolean = false;
+
   //------------ Audio Load -----------
-  public winnerSound = this.getSound('winner.mp3') ; 
-  public xSound = this.getSound('tic.mp3') ; 
-  public oSound = this.getSound('tac.mp3') ; 
+  public winnerSound = this.getSound('winner.mp3');
+  public xSound = this.getSound('tic.mp3');
+  public oSound = this.getSound('tac.mp3');
 
   constructor() {
     this.status = false;
@@ -25,12 +27,64 @@ export class GridService {
   getResultData(): boolean {
     return this.status;
   }
+
+  changeDropMode() {
+    if (this.dropMode===true) this.dropMode = false;
+    else this.dropMode = true;
+    console.log('Drop Mode Chnaged',this.dropMode) ; 
+  }
+
   public Myset(row: number, col: number): void {
+    if (this.dropMode) {
+      let freeRow = this.getFreeCol(col);
+      if (this.currentWinerIx === 0 && freeRow !== -1) {
+        this.boardContent[freeRow][col] = this.currentPlayerIx;
+        this.count = this.getCount();
+        if (this.Check(freeRow, col)) {
+          this.currentWinerIx = this.currentPlayerIx;
+          this.playAudio();
+          return;
+        }
+        this.playAudio();
+        this.currentPlayerIx = this.currentPlayerIx === 1 ? 2 : 1;
+      }
+      else {
+        console.warn('This column is full');
+      }
+    }
+    else {
+      console.log("--------", this.count, "----------");
+
+      if (this.currentWinerIx === 0 && this.boardContent[row][col] === 0) {
+
+        this.boardContent[row][col] = this.currentPlayerIx;
+        this.count = this.getCount();
+        if (this.Check(row, col)) {
+          this.currentWinerIx = this.currentPlayerIx;
+          this.playAudio();
+          return;
+        }
+        this.playAudio();
+        this.currentPlayerIx = this.currentPlayerIx === 1 ? 2 : 1;
+      }
+    }
+  }
+
+  private getFreeCol(col: number): number {
+    for (let i = this.boardContent.length - 1; i >= 0; i--) {
+      if (this.boardContent[i][col] === 0) {
+        return i;
+      }
+    }
+    return -1;
+  }
+
+  public Myset2(row: number, col: number): void { // not drop
 
     console.log("--------", this.count, "----------");
 
     if (this.currentWinerIx === 0 && this.boardContent[row][col] === 0) {
-      
+
       this.boardContent[row][col] = this.currentPlayerIx;
       this.count = this.getCount();
       if (this.Check(row, col)) {
@@ -41,9 +95,6 @@ export class GridService {
       this.playAudio();
       this.currentPlayerIx = this.currentPlayerIx === 1 ? 2 : 1;
     }
-
-    // console.log(this.boardContent) ; 
-
   }
   public Check(p: number, q: number): boolean {
     let v = this.boardContent;
@@ -131,14 +182,14 @@ export class GridService {
 
   public playAudio(): void {
     if (this.currentWinerIx > 0) {
-      this.winnerSound.play() ; 
+      this.winnerSound.play();
     }
-    else{
+    else {
       if (this.currentPlayerIx === 1) {
-        this.xSound.play() ; 
+        this.xSound.play();
       }
       else {
-        this.oSound.play() ; 
+        this.oSound.play();
       }
     }
   }
@@ -150,7 +201,7 @@ export class GridService {
     audio.play();
   }
 
-  private getSound(soundName:string):HTMLAudioElement{
+  private getSound(soundName: string): HTMLAudioElement {
     let audio = new Audio();
     audio.src = "../../../assets/audio/" + soundName;
     audio.load();

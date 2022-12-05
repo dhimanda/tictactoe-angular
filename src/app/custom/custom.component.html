@@ -51,7 +51,8 @@
                 *ngIf="(board.count>=board.boardContent.length*board.boardContent[0].length) && !board.currentWinerIx">The
                 match is Draw</div>
         </div>
-        <button mat-raised-button (click)="playAudio()" >Play Audio</button>
+        <button mat-raised-button (click)="playAudio()">Play Audio</button>
+        <button mat-raised-button (click)="changeMode()">{{myMode}}</button>
         <button mat-raised-button [disabled]="board.count < 1" (click)="board.reset(gameDetails.value.gameRow,gameDetails.value.gameCol, gameDetails.value.gameConnects)">Restart</button>
         <!-- Demo Comment -->
         

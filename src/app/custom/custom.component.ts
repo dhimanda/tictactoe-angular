@@ -23,6 +23,8 @@ export class CustomComponent implements OnInit {
   public col!:number ; 
   public row!:number ; 
   public tdStyle!:string ; 
+  public modeType!:string ; 
+  myMode: boolean = false;
   
 
   constructor(public dialog: MatDialog , public board:GridService) {
@@ -35,16 +37,20 @@ export class CustomComponent implements OnInit {
         gameConnects : new FormControl(4) ,
   
       }
-    )
+    ); 
   }
   ngOnInit(): void {
     if(this.maxNeed > this.screenHeight){
       this.maxNeed = this.screenHeight ; 
     }
-    console.log(this.maxNeed, 'ballll' ) ; 
     this.tdStyle = this.getTdStyle() ;
   }
     
+
+  changeMode():void{
+    this.board.dropMode = !this.board.dropMode ; 
+    this.myMode = this.board.dropMode;
+  }
 
   addCount(val:number):void{
     this.countValue += val ; 
@@ -151,5 +157,4 @@ export class CustomComponent implements OnInit {
     audio.load();
     audio.play();
   }
-
 }
