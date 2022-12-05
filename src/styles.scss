@@ -1,11 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
-body{
-    margin: 0 auto;
-   background-color: rgb(240, 238, 214);
-   display: flex;
-   justify-content: center;
-   align-items: center;
 
-   // background-color: rgb(151, 139, 139);
+body {
+    margin: 0 auto;
+    background-color: rgb(240, 238, 214);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

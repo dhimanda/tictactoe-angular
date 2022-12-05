@@ -1,9 +1,12 @@
-<router-outlet></router-outlet>
-<ul>
-    <li><a routerLink="level1">Go TO Lebel 1</a></li>
-    <li><a routerLink="level2">Go TO Lebel 2</a></li>
-    <li><a routerLink="level3">Go TO Lebel 3</a></li>
-    <li><a routerLink="level4">Go TO Lebel 4</a></li>
-    <li><a routerLink="level5">Go TO Lebel 5</a></li>
-    <li><a routerLink="custom">Go TO Custom Level</a></li>
-</ul>
+<div fxLayout="column">
+    <router-outlet></router-outlet>
+
+    <ul fxLayout="row" fxLayoutAlign="center center">
+        <li fxFlex="15%"><a routerLink="level1">Go TO Lebel 1</a></li>
+        <li fxFlex="15%"><a routerLink="level2">Go TO Lebel 2</a></li>
+        <li fxFlex="15%"><a routerLink="level3">Go TO Lebel 3</a></li>
+        <li fxFlex="15%"><a routerLink="level4">Go TO Lebel 4</a></li>
+        <li fxFlex="15%"><a routerLink="level5">Go TO Lebel 5</a></li>
+        <li fxFlex="15%"><a routerLink="custom">Go TO Custom Level</a></li>
+    </ul>
+</div>

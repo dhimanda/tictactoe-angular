@@ -18,6 +18,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { MAT_MODULES } from './mat-modules';
 import { CustomComponent } from './custom/custom.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+// import { MatIconModule } from '@angular/material';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     MAT_MODULES, // all mat module
     FlexLayoutModule,
+    // MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -11,6 +11,7 @@ export class GridService {
   public boardContent!: number[][];
   public count: number = 0;
   public connectDots!: number;
+  public IsAudioEnable:boolean = true;
 
   public dropMode:boolean = false;
 
@@ -181,6 +182,9 @@ export class GridService {
   }
 
   public playAudio(): void {
+    if(!this.IsAudioEnable){
+      return;
+    }
     if (this.currentWinerIx > 0) {
       this.winnerSound.play();
     }

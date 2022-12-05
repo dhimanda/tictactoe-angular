@@ -1,5 +1,7 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div fxLayoutAlign="center center" fxLayout="column"> 
     <h3>Try to connect {{gameData.gameConnects}}</h3>
+    <h2>{{screenWidth}}x{{screenHeight}}</h2>
 
     <!-- Form  -->
 
@@ -51,9 +53,13 @@
                 *ngIf="(board.count>=board.boardContent.length*board.boardContent[0].length) && !board.currentWinerIx">The
                 match is Draw</div>
         </div>
-        <button mat-raised-button (click)="playAudio()">Play Audio</button>
-        <button mat-raised-button (click)="changeMode()">{{myMode}}</button>
-        <button mat-raised-button [disabled]="board.count < 1" (click)="board.reset(gameDetails.value.gameRow,gameDetails.value.gameCol, gameDetails.value.gameConnects)">Restart</button>
+        <div class="function-btn">
+            <button color="warn" (click)="changeAudio()" mat-icon-button aria-label="mode">
+                <mat-icon>{{board.IsAudioEnable? 'volume_up' : 'volume_off'}}</mat-icon>
+            </button>
+            <button [disabled]="board.count > 0" [color]="myMode?'warn':'accent'" mat-raised-button (click)="changeMode()">{{myMode ? "Turn OFF Drop" : "Turn ON Drop"}}</button>
+            <button mat-raised-button [disabled]="board.count < 1" (click)="board.reset(gameDetails.value.gameRow,gameDetails.value.gameCol, gameDetails.value.gameConnects)">Restart</button>
+        </div>
         <!-- Demo Comment -->
         
     </div>

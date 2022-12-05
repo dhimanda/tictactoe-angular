@@ -52,6 +52,10 @@ export class CustomComponent implements OnInit {
     this.myMode = this.board.dropMode;
   }
 
+  changeAudio():void{
+    this.board.IsAudioEnable = !this.board.IsAudioEnable ; 
+  }
+
   addCount(val:number):void{
     this.countValue += val ; 
   }
