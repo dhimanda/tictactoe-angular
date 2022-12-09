@@ -103,50 +103,105 @@ export class GridService {
     let n = v.length;
     let m = v[0].length;
     let k = this.connectDots;
+    let c1 = [], c2 =[] , c3 = [] , c4=[];
+
     if (x == 0) return false;
 
     let cnt1 = 0, cnt2 = 0, cnt3 = 0, cnt4 = 0;
     for (let i = q; i >= 0; i--) {
-      if (v[p][i] == x) cnt1++;
+      if (v[p][i] == x){
+        cnt1++;
+        c1.push([p,i]);
+      } 
       else break;
     }
     for (let i = q + 1; i < m; i++) {
-      if (v[p][i] == x) cnt1++;
+      if (v[p][i] == x) {
+        cnt1++;
+        c1.push([p,i]);
+      }
       else break;
     }
 
     for (let i = p; i >= 0; i--) {
-      if (v[i][q] == x) cnt2++;
+      if (v[i][q] == x) {
+        cnt2++;
+        c2.push([i,q]); 
+      }
       else break;
     }
     for (let i = p + 1; i < n; i++) {
-      if (v[i][q] == x) cnt2++;
+      if (v[i][q] == x) {
+        cnt2++;
+        c2.push([i,q]); 
+      }
       else break;
     }
 
     for (let i = p, j = q; i >= 0 && j >= 0; i--, j--) {
-      if (v[i][j] == x) cnt3++;
+      if (v[i][j] == x){
+         cnt3++;
+         c3.push([i,j]) ; 
+      }
       else break;
     }
     for (let i = p + 1, j = q + 1; i < n && j < m; i++, j++) {
-      if (v[i][j] == x) cnt3++;
+      if (v[i][j] == x) {
+        cnt3++;
+        c3.push([i,j]) ; 
+     }
       else break;
     }
 
     for (let i = p, j = q; i >= 0 && j < m; i--, j++) {
-      if (v[i][j] == x) cnt4++;
+      if (v[i][j] == x) {
+        cnt4++;
+        c4.push([i,j]) ; 
+      }
       else break;
     }
     for (let i = p + 1, j = q - 1; i < n && j >= 0; i++, j--) {
-      if (v[i][j] == x) cnt4++;
+      if (v[i][j] == x) {
+        cnt4++;
+        c4.push([i,j]) ; 
+      }
       else break;
     }
 
-    if (cnt1 >= k || cnt2 >= k || cnt3 >= k || cnt4 >= k) {
+    if(this.IfMatch(cnt1,k,c1) || this.IfMatch(cnt2,k,c2) || this.IfMatch(cnt3,k,c3) || this.IfMatch(cnt4,k,c4)){
+      return true;
+    }
+
+    // if(cnt1 >= k) {
+    //   console.log(c1); 
+
+    //   return true; 
+    // }
+    // if(cnt2 >= k) {
+    //   console.log(c2); 
+    //   return true; 
+    // }
+    // if(cnt3 >= k) {
+    //   console.log(c3); 
+    //   return true; 
+    // }
+    // if(cnt4 >= k) {
+    //   console.log(c4); 
+    //   return true; 
+    // }
+    // if (cnt1 >= k || cnt2 >= k || cnt3 >= k || cnt4 >= k) {
+    //   return true;
+    // }
+    return false;
+
+  }
+
+  private IfMatch(cnt:number,k:number,c:number[][]){
+    if(cnt>=k){
+      console.log(c) ; 
       return true;
     }
     return false;
-
   }
 
   private testData(a: number, b: number, p: number, q: number, x: number, y: number, m: number, n: number): boolean {

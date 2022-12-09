@@ -93,7 +93,7 @@ export class CustomComponent implements OnInit {
   }
 
   public getStyle(row: number, col: number): string {
-    return 'contains-' + this.getPlayerName(row, col);
+    return 'glow contains-' + this.getPlayerName(row, col);
   }
 
   public getResult(): string {

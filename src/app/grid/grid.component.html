@@ -1,0 +1,10 @@
+<div fxLayout="column" fxLayoutAlign="center stretch"class="">
+    <div *ngFor="let row of board;let i = index" fxLayout="row" fxLayoutAlign="center stretch"  class="trwo">
+        <button (click)="setData(i,j)" *ngFor="let col of board[i] ; let j = index" class="tdata">
+            <div >
+                {{board[i][j]}}
+            </div>
+        </button>
+        
+    </div>
+</div>
