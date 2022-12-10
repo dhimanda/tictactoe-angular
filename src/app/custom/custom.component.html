@@ -39,11 +39,13 @@
         <table>
             <tbody>
                 <tr fxLayoutAlign="center center" *ngFor="let r of board.boardContent ;let i = index">
-                    <td [style]="tdStyle" *ngFor="let c of board.boardContent[i] ; let j = index" (click)="board.Myset(i,j)"
-                        [class]="getStyle(i,j)">{{getPlayerName(i,j)}}</td>
+                    <td  (mouseleave)="mouseLeave()" [style]="tdStyle" *ngFor="let c of board.boardContent[i] ; let j = index" (click)="board.Myset(i,j)"
+                    (mouseover)="mouseEnter(i,j)"  [class]="getStyle(i,j)">{{getPlayerName(i,j)}}</td>
                 </tr>
             </tbody>
         </table>
+
+        <!-- table ends -->
         <div class="WinnerArea">
             <div class="winner winner-o" *ngIf="board.currentWinerIx > 0 && getResult()==='o'">The Winer is {{getResult()}}
             </div>

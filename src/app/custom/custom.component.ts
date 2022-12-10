@@ -167,4 +167,12 @@ export class CustomComponent implements OnInit {
     audio.load();
     audio.play();
   }
+
+  // --- Robin Bai 
+  mouseEnter(row:number,col:number):void{
+    console.log("Enterd",row,col) ; 
+  }
+  mouseLeave():void{
+    console.log("Mouse Leave") ; 
+  }
 }
