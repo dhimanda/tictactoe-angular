@@ -95,16 +95,11 @@ export class CustomComponent implements OnInit {
   public getStyle(row: number, col: number): string {
     if(this.board.currentWinerIx != 0){
       for(let i = 0 ; i<this.board.winnerIndex.length; i++) {
-        if(this.board.currentWinerIx===1){
-          if(row=== this.board.winnerIndex[i][0] && this.board.winnerIndex[i][1]===col)return 'winner-line-x';
-        }
-        else{
-          if(row=== this.board.winnerIndex[i][0] && this.board.winnerIndex[i][1]===col)return 'winner-line-o';
-        }
-        
+        if(row== this.board.winnerIndex[i][0] && this.board.winnerIndex[i][1]==col)return 'winner-line';
       }
     }
     return 'glow contains-' + this.getPlayerName(row, col);
+
   }
 
   public getResult(): string {
