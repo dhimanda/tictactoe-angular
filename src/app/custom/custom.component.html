@@ -1,28 +1,28 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div fxLayoutAlign="center center" fxLayout="column">
     <h3>Try to connect {{gameData.gameConnects}}</h3>
-    <h2>Screen : {{screenWidth}}x{{screenHeight}}</h2>
+    <!-- <h2>Screen : {{screenWidth}}x{{screenHeight}}</h2> -->
 
     <!-- Form  -->
 
-    <form class="myForm" fxLayoutGap="8px" fxLayoutAlign="center center" [formGroup]="gameDetails" fxLayout="row" >
+    <form fxFlex="60" class="myForm" fxLayoutGap="8px" fxLayoutAlign="center center" [formGroup]="gameDetails" fxLayout="row" >
 
-        <mat-form-field fxFlex.xs="15" fxFlex="15" appearance="outline">
+        <mat-form-field fxFlex.xs="15" fxFlex="10" appearance="outline">
             <mat-label>Rows:</mat-label>
                 <input type="number" matInput formControlName="gameRow" #rows >
         </mat-form-field>
 
-        <mat-form-field fxFlex.xs="15"  fxFlex="15" appearance="outline">
+        <mat-form-field fxFlex.xs="15"  fxFlex="10" appearance="outline">
             <mat-label>Columns:</mat-label>
             <input type="number" matInput formControlName="gameCol">
         </mat-form-field>
 
-        <mat-form-field fxFlex.xs="15" fxFlex="15" appearance="outline">
+        <mat-form-field fxFlex.xs="15" fxFlex="10" appearance="outline">
             <mat-label>Connects:</mat-label>
             <input type="number" matInput formControlName="gameConnects">
         </mat-form-field>
-        <span fxFlex="15" fxFlex.xs="10" >
-            <button color="primary" mat-raised-button [disabled]="IsConfigure()"  (click)="disp()" type="submit">Configure</button>
+        <span fxFlex="15" fxFlex.xs="15" >
+            <button class="configure-btn" color="primary" mat-raised-button [disabled]="IsConfigure()"  (click)="disp()" type="submit">Configure</button>
         </span>
     </form>
 

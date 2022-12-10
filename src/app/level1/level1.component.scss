@@ -1,11 +1,3 @@
-:root {
-   --red: #DF0113;
-   --redLow : #E59B95 ;
-   --white: #D5CCCD;
-   --green: #485400 ;
-   --greenDark : #0E1B0B ;
-   --purple : purple;
- }
 
 table {
    margin: 0 auto;
@@ -33,10 +25,10 @@ td {
    border: 1px solid rgb(107, 20, 247);
 }
 
-.contains- {
+
+.contains-{
    background-color: grayscale($color: #bbafaf);
 }
-
 .win {
    font-weight: bold;
  }
@@ -76,6 +68,14 @@ td {
 
 .winner-x {
    background-color: red;
+}
+
+.winner-line-x {
+   background-color: darkred;
+}
+
+.winner-line-o {
+   background-color: darkgreen;
 }
 
 .turn-area{
