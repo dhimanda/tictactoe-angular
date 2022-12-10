@@ -10,22 +10,22 @@ import { FormControl, FormGroup, NgModel } from '@angular/forms';
   styleUrls: ['./custom.component.scss']
 })
 export class CustomComponent implements OnInit {
-  screenWidth = window.innerWidth;  
-  screenHeight = window.innerHeight; 
+  screenWidth = window.innerWidth;
+  screenHeight = window.innerHeight;
 
-  maxNeed = this.screenWidth ; 
+  maxNeed = this.screenWidth ;
 
 
   public playerNames !: string[];
-  public countValue : number = 0 ; 
+  public countValue : number = 0 ;
 
-  public gameDetails!:FormGroup; 
-  public col!:number ; 
-  public row!:number ; 
-  public tdStyle!:string ; 
-  public modeType!:string ; 
+  public gameDetails!:FormGroup;
+  public col!:number ;
+  public row!:number ;
+  public tdStyle!:string ;
+  public modeType!:string ;
   myMode: boolean = false;
-  
+
 
   constructor(public dialog: MatDialog , public board:GridService) {
     this.playerNames = ['', 'x', 'o'];
@@ -35,29 +35,29 @@ export class CustomComponent implements OnInit {
         gameRow : new FormControl(5) ,
         gameCol : new FormControl(5) ,
         gameConnects : new FormControl(4) ,
-  
+
       }
-    ); 
+    );
   }
   ngOnInit(): void {
     if(this.maxNeed > this.screenHeight){
-      this.maxNeed = this.screenHeight ; 
+      this.maxNeed = this.screenHeight ;
     }
     this.tdStyle = this.getTdStyle() ;
   }
-    
+
 
   changeMode():void{
-    this.board.dropMode = !this.board.dropMode ; 
+    this.board.dropMode = !this.board.dropMode ;
     this.myMode = this.board.dropMode;
   }
 
   changeAudio():void{
-    this.board.IsAudioEnable = !this.board.IsAudioEnable ; 
+    this.board.IsAudioEnable = !this.board.IsAudioEnable ;
   }
 
   addCount(val:number):void{
-    this.countValue += val ; 
+    this.countValue += val ;
   }
 
   openDialog(){
@@ -66,11 +66,11 @@ export class CustomComponent implements OnInit {
   }
 
   onColor():string{
-    return (this.countValue < 0) ? 'color:red' : 'color:blue'; 
+    return (this.countValue < 0) ? 'color:red' : 'color:blue';
   }
 
   laddu(){
-    console.log('hi laddu') ; 
+    console.log('hi laddu') ;
   }
 
   RunLoop(num: number) {
@@ -93,20 +93,26 @@ export class CustomComponent implements OnInit {
   }
 
   public getStyle(row: number, col: number): string {
+    if(this.board.currentWinerIx != 0){
+      for(let i = 0 ; i<this.board.winnerIndex.length; i++) {
+        if(row== this.board.winnerIndex[i][0] && this.board.winnerIndex[i][1]==col)return 'winner-line';
+      }
+    }
     return 'glow contains-' + this.getPlayerName(row, col);
+
   }
 
   public getResult(): string {
     return this.playerNames[this.board.currentWinerIx];
   }
 
-  gameData : any = {gameConnects:4}; 
+  gameData : any = {gameConnects:4};
 
   public disp():void{
 
-    console.log('From Disp=',this.gameDetails.value) ; 
-    this.gameData = this.gameDetails.value ; 
-    this.board.reset(this.gameDetails.value.gameRow , this.gameDetails.value.gameCol,this.gameDetails.value.gameConnects) ; 
+    console.log('From Disp=',this.gameDetails.value) ;
+    this.gameData = this.gameDetails.value ;
+    this.board.reset(this.gameDetails.value.gameRow , this.gameDetails.value.gameCol,this.gameDetails.value.gameConnects) ;
     this.tdStyle = this.getTdStyle() ;
   }
 
@@ -115,12 +121,12 @@ export class CustomComponent implements OnInit {
     if(this.gameDetails.value.gameConnects < 2){
       return true;
     }
-    let minData = this.gameDetails.value.gameRow ; 
+    let minData = this.gameDetails.value.gameRow ;
     if(minData < this.gameDetails.value.gameCol) {
-      minData = this.gameDetails.value.gameCol ; 
+      minData = this.gameDetails.value.gameCol ;
     }
-    if(minData < this.gameDetails.value.gameConnects) return true; 
-    else return false; 
+    if(minData < this.gameDetails.value.gameConnects) return true;
+    else return false;
   }
 
   // 00 01 02 03
@@ -129,28 +135,28 @@ export class CustomComponent implements OnInit {
   // 30 31 32 33
 //--------- Result Logic Start ---------
 
-  
+
 
   getTdStyle():string{
   let row = this.maxNeed/this.gameDetails.value.gameRow;
-  let col = (this.maxNeed*.8)/this.gameDetails.value.gameCol ; 
-  let font = col * 0.66 ; 
-  let data:string; 
-  
+  let col = (this.maxNeed*.8)/this.gameDetails.value.gameCol ;
+  let font = col * 0.66 ;
+  let data:string;
+
   data = "height: "+col+"px; width:"+col+"px; font-size: "+font+"px;"
-  console.log(data) ; 
+  console.log(data) ;
   return  data;
  }
 
   //--------- Result Logic Ends ---------
 
- 
+
 
   // ---------- function for styling ------------
   public getPlayerColor():string{
     if(this.board.currentPlayerIx===1) return 'player-turn winner-x';
     if(this.board.currentPlayerIx===2) return 'player-turn winner-o';
-    return "" ; 
+    return "" ;
   }
 
   // ---------- Audio ------------------

@@ -1,9 +1,9 @@
 :root {
    --red: #DF0113;
-   --redLow : #E59B95 ; 
+   --redLow : #E59B95 ;
    --white: #D5CCCD;
-   --green: #485400 ; 
-   --greenDark : #0E1B0B ; 
+   --green: #485400 ;
+   --greenDark : #0E1B0B ;
    --purple : purple;
  }
 
@@ -20,11 +20,11 @@ table {
 }
 
 tbody{
-   
+
 }
 
 tr{
-   
+
 }
 
 td {
@@ -47,6 +47,10 @@ td {
 
 .contains-o {
    background-color: green;
+}
+
+.winner-line {
+  background-color: aquamarine;
 }
 
 .WinnerArea {

@@ -13,6 +13,8 @@ export class GridService {
   public connectDots!: number;
   public IsAudioEnable:boolean = true;
 
+  winnerIndex!: number[][];
+
   public dropMode:boolean = false;
 
   //------------ Audio Load -----------
@@ -32,7 +34,7 @@ export class GridService {
   changeDropMode() {
     if (this.dropMode===true) this.dropMode = false;
     else this.dropMode = true;
-    console.log('Drop Mode Chnaged',this.dropMode) ; 
+    console.log('Drop Mode Chnaged',this.dropMode) ;
   }
 
   public Myset(row: number, col: number): void {
@@ -112,7 +114,7 @@ export class GridService {
       if (v[p][i] == x){
         cnt1++;
         c1.push([p,i]);
-      } 
+      }
       else break;
     }
     for (let i = q + 1; i < m; i++) {
@@ -126,14 +128,14 @@ export class GridService {
     for (let i = p; i >= 0; i--) {
       if (v[i][q] == x) {
         cnt2++;
-        c2.push([i,q]); 
+        c2.push([i,q]);
       }
       else break;
     }
     for (let i = p + 1; i < n; i++) {
       if (v[i][q] == x) {
         cnt2++;
-        c2.push([i,q]); 
+        c2.push([i,q]);
       }
       else break;
     }
@@ -141,14 +143,14 @@ export class GridService {
     for (let i = p, j = q; i >= 0 && j >= 0; i--, j--) {
       if (v[i][j] == x){
          cnt3++;
-         c3.push([i,j]) ; 
+         c3.push([i,j]) ;
       }
       else break;
     }
     for (let i = p + 1, j = q + 1; i < n && j < m; i++, j++) {
       if (v[i][j] == x) {
         cnt3++;
-        c3.push([i,j]) ; 
+        c3.push([i,j]) ;
      }
       else break;
     }
@@ -156,14 +158,14 @@ export class GridService {
     for (let i = p, j = q; i >= 0 && j < m; i--, j++) {
       if (v[i][j] == x) {
         cnt4++;
-        c4.push([i,j]) ; 
+        c4.push([i,j]) ;
       }
       else break;
     }
     for (let i = p + 1, j = q - 1; i < n && j >= 0; i++, j--) {
       if (v[i][j] == x) {
         cnt4++;
-        c4.push([i,j]) ; 
+        c4.push([i,j]) ;
       }
       else break;
     }
@@ -173,21 +175,21 @@ export class GridService {
     }
 
     // if(cnt1 >= k) {
-    //   console.log(c1); 
+    //   console.log(c1);
 
-    //   return true; 
+    //   return true;
     // }
     // if(cnt2 >= k) {
-    //   console.log(c2); 
-    //   return true; 
+    //   console.log(c2);
+    //   return true;
     // }
     // if(cnt3 >= k) {
-    //   console.log(c3); 
-    //   return true; 
+    //   console.log(c3);
+    //   return true;
     // }
     // if(cnt4 >= k) {
-    //   console.log(c4); 
-    //   return true; 
+    //   console.log(c4);
+    //   return true;
     // }
     // if (cnt1 >= k || cnt2 >= k || cnt3 >= k || cnt4 >= k) {
     //   return true;
@@ -198,7 +200,8 @@ export class GridService {
 
   private IfMatch(cnt:number,k:number,c:number[][]){
     if(cnt>=k){
-      console.log(c) ; 
+      console.log(c) ;
+      this.winnerIndex = c;
       return true;
     }
     return false;
