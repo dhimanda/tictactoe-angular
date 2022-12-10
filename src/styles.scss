@@ -2,9 +2,8 @@
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 
 body {
-    margin: 0 auto;
+    margin: 0;
     background-color: rgb(240, 238, 214);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 100vw;
+    height: 100vh;
 }
