@@ -18,6 +18,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { MAT_MODULES } from './mat-modules';
 import { CustomComponent } from './custom/custom.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatGridListModule} from '@angular/material/grid-list';
 // import { MatIconModule } from '@angular/material';
 
 
@@ -41,6 +42,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     MAT_MODULES, // all mat module
     FlexLayoutModule,
+    MatGridListModule
     // MatIconModule
   ],
   providers: [],

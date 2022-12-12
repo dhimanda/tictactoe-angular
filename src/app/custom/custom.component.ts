@@ -26,6 +26,8 @@ export class CustomComponent implements OnInit {
   public modeType!:string ;
   myMode: boolean = false;
 
+  IsGridMode:boolean = false; 
+
 
   constructor(public dialog: MatDialog , public board:GridService) {
     this.playerNames = ['', 'x', 'o'];
@@ -180,5 +182,9 @@ export class CustomComponent implements OnInit {
   }
   mouseLeave():void{
     console.log("Mouse Leave") ; 
+  }
+
+  changeGridMode(){
+    this.IsGridMode = !this.IsGridMode ; 
   }
 }
