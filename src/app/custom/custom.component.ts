@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GridService } from '../grid.service';
 import { FormControl, FormGroup, NgModel } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -29,7 +30,7 @@ export class CustomComponent implements OnInit {
   IsGridMode:boolean = false; 
 
 
-  constructor(public board:GridService , private http:HttpClient) {
+  constructor(public board:GridService , private http:HttpClient , private dialog:MatDialog) {
     this.playerNames = ['', 'x', 'o'];
     this.board.reset(5,5,4);
     this.gameDetails = new FormGroup(
@@ -196,5 +197,9 @@ export class CustomComponent implements OnInit {
     //   console.log("called") ; 
     // });
   }
+
+
+  // --------------- Mad Daialoge -----------------
+  
 
 }
