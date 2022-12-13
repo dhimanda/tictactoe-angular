@@ -62,8 +62,8 @@
 
   <div
     *ngIf="IsGridMode"
-    ngStyle.gt-md="width: 30%; border: 2px solid black"
-    style="width: 95%; border: 2px solid blue"
+    ngStyle.gt-md="width: 30%"
+    style="width: 95%;"
     class="matGridListArea"
   >
     <div>
@@ -89,7 +89,6 @@
     <table *ngIf="!IsGridMode">
       <tbody>
         <tr
-          fxLayoutAlign="center center"
           *ngFor="let r of board.boardContent; let i = index"
         >
           <td
@@ -133,7 +132,7 @@
         The match is Draw
       </div>
     </div>
-    <div class="function-btn">
+    <div fxLayoutAlign="center center" class="function-btn">
       <button
         color="warn"
         (click)="changeAudio()"
@@ -170,7 +169,7 @@
         {{ IsGridMode ? "Table View" : "Grid View" }}
       </button>
 
-      <button mat-raised-button (click)="getApiCall()">Get Api Call</button>
+      <button *ngIf="false" mat-raised-button (click)="getApiCall()">Get Api Call</button>
     </div>
     <!-- Demo Comment -->
   </div>

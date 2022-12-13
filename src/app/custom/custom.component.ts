@@ -102,7 +102,6 @@ export class CustomComponent implements OnInit {
       }
     }
     return 'glow contains-' + this.getPlayerName(row, col);
-
   }
 
   public getResult(): string {
