@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
-import { FormComponent } from '../form/form.component';
 import { GridService } from '../grid.service';
 import { FormControl, FormGroup, NgModel } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-custom',
@@ -29,7 +29,7 @@ export class CustomComponent implements OnInit {
   IsGridMode:boolean = false; 
 
 
-  constructor(public dialog: MatDialog , public board:GridService) {
+  constructor(public board:GridService , private http:HttpClient) {
     this.playerNames = ['', 'x', 'o'];
     this.board.reset(5,5,4);
     this.gameDetails = new FormGroup(
@@ -60,11 +60,6 @@ export class CustomComponent implements OnInit {
 
   addCount(val:number):void{
     this.countValue += val ;
-  }
-
-  openDialog(){
-    console.log('Laddu Baba');
-    this.dialog.open(FormComponent);
   }
 
   onColor():string{
@@ -187,4 +182,20 @@ export class CustomComponent implements OnInit {
   changeGridMode(){
     this.IsGridMode = !this.IsGridMode ; 
   }
+  getApiCall(){
+
+    let headers = new Headers();
+    headers.append('Access-Control-Allow-Origin', '*');
+
+
+
+    this.http.get('https://localhost:7001/api/board/state/board123').subscribe(()=>{
+      headers: headers
+    });
+
+    // this.http.get('https://api.themoviedb.org/3/movie/550?api_key=4972464e7c5458ebaaf29cb554132bd6').subscribe(()=>{
+    //   console.log("called") ; 
+    // });
+  }
+
 }

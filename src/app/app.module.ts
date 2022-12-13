@@ -19,6 +19,8 @@ import { MAT_MODULES } from './mat-modules';
 import { CustomComponent } from './custom/custom.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { HttpClientModule } from '@angular/common/http';
+import { NameFormComponent } from './name-form/name-form.component';
 // import { MatIconModule } from '@angular/material';
 
 
@@ -32,7 +34,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
     Level5Component,
     FormComponent,
     RestartComponent,
-    CustomComponent
+    CustomComponent,
+    NameFormComponent
   ],
   imports: [ // external items :: Modules
     BrowserModule,
@@ -42,7 +45,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
     FormsModule,
     MAT_MODULES, // all mat module
     FlexLayoutModule,
-    MatGridListModule
+    MatGridListModule,
+    HttpClientModule
     // MatIconModule
   ],
   providers: [],
