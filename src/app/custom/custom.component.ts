@@ -40,6 +40,10 @@ export class CustomComponent implements OnInit {
 
 
   constructor(public board:GridService , private http:HttpClient , private dialog:MatDialog, private _snackBar: MatSnackBar) {
+    if(this.maxNeed > this.screenHeight){
+      this.maxNeed = this.screenHeight ;
+      this.maxNeed = this.maxNeed * 0.8;
+    }
     this.playerNames = ['', 'x', 'o'];
     this.board.reset(5,5,4);
     this.gameDetails = new FormGroup(
@@ -58,9 +62,7 @@ export class CustomComponent implements OnInit {
       player2 :this.Player2RealName
     }
     
-    if(this.maxNeed > this.screenHeight){
-      this.maxNeed = this.screenHeight ;
-    }
+    
     this.tdStyle = this.getTdStyle() ;
   }
 
@@ -157,7 +159,7 @@ export class CustomComponent implements OnInit {
 
   getTdStyle():string{
   let row = this.maxNeed/this.gameDetails.value.gameRow;
-  let col = (this.maxNeed*.8)/this.gameDetails.value.gameCol ;
+  let col = (this.maxNeed*0.8)/this.gameDetails.value.gameCol ;
   let font = col * 0.66 ;
   let data:string;
 
