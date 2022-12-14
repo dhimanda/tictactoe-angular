@@ -1,0 +1,35 @@
+<div [formGroup]="playerNames">
+  <div fxLayout="column">
+    <h2 fxLayoutAlign="center center">Tic Tac Toe Multiverse</h2>
+    <mat-form-field appearance="outline" hideRequiredMarker>
+      <mat-label>Player 1 Name</mat-label>
+      <input formControlName="player1" matInput type="text" required />
+    </mat-form-field>
+    <mat-form-field appearance="outline" hideRequiredMarker>
+      <mat-label>Player 2 Name</mat-label>
+      <input formControlName="player2" matInput type="text" required />
+    </mat-form-field>
+
+    <div fxFlex="100" fxLayoutGap="8px">
+      <button
+        fxFlex="50"
+        (click)="playAsGuest()"
+        mat-raised-button
+        color="primary"
+      >
+        Play as Guest
+      </button>
+      <button
+        fxLayoutAlign="center center"
+        fxFlex="50"
+        type="submit"
+        (click)="submitPlayerName()"
+        mat-stroked-button
+        color="warn"
+      >
+        <span *ngIf="!isLoading">Submit Name</span>
+        <mat-spinner *ngIf="isLoading" [diameter]="15"></mat-spinner>
+      </button>
+    </div>
+  </div>
+</div>

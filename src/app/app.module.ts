@@ -21,6 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { HttpClientModule } from '@angular/common/http';
 import { NameFormComponent } from './name-form/name-form.component';
+
+import { NameformComponent } from './nameform/nameform.component';
 // import { MatIconModule } from '@angular/material';
 
 
@@ -35,7 +37,8 @@ import { NameFormComponent } from './name-form/name-form.component';
     FormComponent,
     RestartComponent,
     CustomComponent,
-    NameFormComponent
+    NameFormComponent,
+    NameformComponent
   ],
   imports: [ // external items :: Modules
     BrowserModule,

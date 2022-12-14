@@ -3,7 +3,12 @@ import { GridService } from '../grid.service';
 import { FormControl, FormGroup, NgModel } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { NameformComponent } from '../nameform/nameform.component';
+export interface PlayerName{
+  player1:string,
+  player2:string
+}
 
 @Component({
   selector: 'app-custom',
@@ -11,6 +16,7 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./custom.component.scss']
 })
 export class CustomComponent implements OnInit {
+  PlayerNames!:PlayerName;
   screenWidth = window.innerWidth;
   screenHeight = window.innerHeight;
 
@@ -29,8 +35,11 @@ export class CustomComponent implements OnInit {
 
   IsGridMode:boolean = false; 
 
+  public Player1RealName:string = 'x' ; 
+  public Player2RealName:string = 'o' ; 
 
-  constructor(public board:GridService , private http:HttpClient , private dialog:MatDialog) {
+
+  constructor(public board:GridService , private http:HttpClient , private dialog:MatDialog, private _snackBar: MatSnackBar) {
     this.playerNames = ['', 'x', 'o'];
     this.board.reset(5,5,4);
     this.gameDetails = new FormGroup(
@@ -43,6 +52,12 @@ export class CustomComponent implements OnInit {
     );
   }
   ngOnInit(): void {
+    this.openDialog();
+    this.PlayerNames = {
+      player1 :this.Player1RealName,
+      player2 :this.Player2RealName
+    }
+    
     if(this.maxNeed > this.screenHeight){
       this.maxNeed = this.screenHeight ;
     }
@@ -201,5 +216,42 @@ export class CustomComponent implements OnInit {
 
   // --------------- Mad Daialoge -----------------
   
+  openSnackBar(message: string,siteMassage:string) {
+    this._snackBar.open(message, siteMassage, {
+      duration: 2500
+    });
+    
+  }
+
+  realNameAssign(){
+    this.Player1RealName = this.PlayerNames.player1;
+    this.Player2RealName = this.PlayerNames.player2;
+    if(this.PlayerNames.player1.length===0){
+      this.Player1RealName = 'x' ; 
+    }
+    if(this.PlayerNames.player2.length===0){
+      this.Player2RealName = 'o' ;
+    }
+  }
+
+  openDialog(){
+    const dialogRef = this.dialog.open(NameformComponent
+      , {
+      data:{
+        player1:"" ,
+        player2:"" ,
+      }
+    },
+
+    );
+    dialogRef.afterClosed().subscribe(res => {
+      console.log(res);
+      this.openSnackBar("Welcome to TicTacToe Multiverse", "Lets Play"); 
+      this.PlayerNames = res;
+      this.realNameAssign();
+    }
+
+    )
+  }
 
 }
